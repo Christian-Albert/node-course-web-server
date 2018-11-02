@@ -24,6 +24,13 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use((req, res, next) => {
+    res.render('maintenance.hbs', {
+        pageTitle: 'Under maintenance...',
+        maintenanceMessage: 'The web-page is currently being updated'
+    });
+});
+
 // Register hbs helper methods
 hbs.registerHelper('getCurrentYear', () => {
     return new Date().getFullYear();
