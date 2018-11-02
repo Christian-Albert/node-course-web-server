@@ -1,5 +1,6 @@
 const express = require('express');
 const hbs = require('hbs');
+const fs = require('fs');
 
 var app = express();
 
@@ -8,9 +9,20 @@ hbs.registerPartials(__dirname + '/views/partials');
 // Make express use the hbs as its view engine
 app.set('view engine', 'hbs');
 
-// Add some middle-ware to serve static files
+// Add some middleware to serve static files
 // The __dirname variable gives the path to the project directory
 app.use(express.static(__dirname + '/public'));
+
+// More middleware
+app.use((req, res, next) => {
+    var now = new Date().toString();
+    var log = `${now}: ${req.method} ${req.url}`
+    console.log(log);
+    fs.appendFileSync('server.log', log + '\n', (err) => {
+        console.log('Unable to append to server.log');
+    });
+    next();
+});
 
 // Register hbs helper methods
 hbs.registerHelper('getCurrentYear', () => {
