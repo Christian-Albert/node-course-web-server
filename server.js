@@ -60,6 +60,20 @@ app.get('/about', (req, res) => {
     });
 });
 
+app.get('/projects', (req, res) => {
+    res.render('base.hbs', {
+        pageTitle: 'Portfolio page',
+        welcomeMessage: 'This is where I can list some projects'
+    });
+});
+
+app.get('/help', (req, res) => {
+    res.render('base.hbs', {
+        pageTitle: 'Help page',
+        welcomeMessage: 'This is where some help might be found'
+    });
+});
+
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: 'Unable to fulfill your request'
