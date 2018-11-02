@@ -2,6 +2,10 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+// Heroku will provide the port as the PORT environmental variable
+// Using or, ||, operator to provide our own port when running locally
+const port = process.env.PORT || 3030;
+
 var app = express();
 
 // Making use of partials, similar to Django templates
@@ -62,7 +66,7 @@ app.get('/bad', (req, res) => {
     });
 });
 
-// Bind the express app to specific port
-app.listen(3030, () => {
-    console.log('Express server is up on port 3030');
+// Bind the express app to specific port set up above
+app.listen(port, () => {
+    console.log(`Express server is up on port ${port}`);
 });
