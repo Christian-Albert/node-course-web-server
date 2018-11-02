@@ -20,12 +20,14 @@ app.use((req, res, next) => {
     next();
 });
 
+/*
 app.use((req, res, next) => {
     res.render('maintenance.hbs', {
         pageTitle: 'Under maintenance...',
         maintenanceMessage: 'The web-page is currently being updated'
     });
 });
+*/
 
 // Add some middleware to serve static files
 // The __dirname variable gives the path to the project directory
